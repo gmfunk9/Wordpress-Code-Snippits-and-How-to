@@ -1,0 +1,11 @@
+	/* overhang the logo */
+	@media screen and (min-width: 800px) {
+	 #site-header {
+	  position: fixed;
+	  height: 66px;
+	 }
+	 img {
+	  z-index: 99;
+		 
+	 }
+	}
