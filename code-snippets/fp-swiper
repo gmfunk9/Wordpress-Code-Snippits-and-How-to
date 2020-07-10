@@ -1,0 +1,66 @@
+/*just add fp-swiper to the section that is holding the elementor post widget */
+/*You may need to adjust layout settings in the post widget, but it's set for 3 columns and -1 to grab every post */
+
+
+
+add_action( 'wp_footer', function () { ?>
+<style>
+	/*fp-Swiper*/
+	.elementor .fp-swiper .swiper-wrapper      { display: flex;flex-wrap: inherit;}
+	.elementor .fp-swiper .fp-swiper-container { overflow:hidden; }
+	.elementor .fp-swiper .swiper-slide        { min-height:280px;transition: all .69s cubic-bezier(.21,.33,.42,2.82); transition-property: border,box-shadow,margin ;}
+	.elementor .fp-swiper .swiper-slide:hover  { margin-top:-12px;margin-bottom:12px;}
+	.elementor .fp-swiper .fp-swiper-container { margin-left:-4px;padding:16px;padding-bottom:64px;}
+	
+	.swiper-button-next::before {
+		content: "\f054";font-family: "Font Awesome 5 Free";font-size: 2rem;
+	}	
+	.swiper-button-prev::before {
+		content: "\f053";font-family: "Font Awesome 5 Free";font-size: 2rem;
+	}
+
+	@media (min-width:1280px) {
+		.elementor .swiper-button-next         { right: -32px;background-image:none;}
+		.elementor .swiper-button-prev         { left: -32px;background-image:none; }
+	}
+</style>
+<script type="text/javascript">	
+(function($) {
+		jQuery(".fp-swiper .elementor-widget-container").addClass("fp-swiper-container");
+		jQuery(".fp-swiper .elementor-posts-container").addClass("swiper-wrapper");
+		jQuery(".fp-swiper .elementor-post").addClass("swiper-slide");
+		jQuery('.fp-swiper .elementor-widget').append('<div class="swiper-button-next"></div><div class="swiper-button-prev"></div>');
+		jQuery('.fp-swiper .fp-swiper-container').append('<div class="swiper-pagination"></div>');
+	
+		document.querySelectorAll('.fp-swiper-container').forEach(function(elem) {
+			new Swiper(elem, {
+				spaceBetween: 20,
+				loop: true,
+				centeredSlides: true,
+				navigation: {
+					nextEl: elem.nextElementSibling,
+					prevEl: elem.nextElementSibling.nextElementSibling,
+				},
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+				breakpoints: {
+					640: {
+						slidesPerView: 1,
+						spaceBetween: 20,
+					},
+					768: {
+						slidesPerView: 2,
+						spaceBetween: 20,
+					},
+					1024: {
+						slidesPerView: 3,
+						spaceBetween: 33,
+					},
+				},
+			});
+		});
+})(jQuery);
+</script>
+<?php },999);
