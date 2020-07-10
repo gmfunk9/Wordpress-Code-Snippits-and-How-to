@@ -1,0 +1,32 @@
+/*Register WordPress Gutenberg CPT */
+function service_post_type() {
+    register_post_type( 'services',
+        // WordPress CPT Options Start
+        array(
+            'labels' => array(
+                'name' => __( 'Services' ),
+                'singular_name' => __( 'Service' )
+            ),
+            'public' => true,
+			'has_archive' => true,
+            'rewrite' => array('slug' => 'services'),
+            'show_in_rest' => true,
+			'menu_icon' => 'dashicons-admin-generic',
+            'supports' => array(
+		            'title',
+		            'elementor',
+		            'editor',
+		            'excerpt',
+		            'trackbacks',
+		            'custom-fields',
+		            'comments',
+		            'revisions',
+		            'thumbnail',
+		            'author',
+		            'page-attributes',),
+					'taxonomies'          => array( 'category' ),
+		)
+    );
+}
+
+add_action( 'init', 'service_post_type' );
